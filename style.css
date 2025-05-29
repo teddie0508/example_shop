@@ -1362,4 +1362,13 @@ footer .copyright {
     #subtotal {
         width: 100%;
     }
+
+    /* Lightbox Single Product */
+    .lightbox .next {
+        right: 0px;
+    }
+
+    .lightbox .prev {
+        right: 0px;
+    }
 }

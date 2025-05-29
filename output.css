@@ -1254,4 +1254,10 @@ footer .copyright {
   #subtotal {
     width: 100%;
   }
+  .lightbox .next {
+    right: 0px;
+  }
+  .lightbox .prev {
+    right: 0px;
+  }
 }
