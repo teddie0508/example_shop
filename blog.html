@@ -1,35 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Cara Shop" />
     <title>Website Beginner</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="output.css">
 </head>
 
 <body>
     <section id="header">
-        <a href="index.html"><img src="img/logo.png" class="logo" alt=""></a>
+        <a href="index.html"><img src="img/logo.png" class="logo" alt="logo shop" title="click to go back Home"></a>
 
         <div>
             <ul id="navbar">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
+                <li class="shop-submenu">
+                    <a href="shop.html">Shop <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="shop.html">All Products</a></li>
+                        <li><a href="sproduct.html">Product 1</a></li>
+                        <li><a href="sproduct.html">Product 2</a></li>
+                        <li><a href="product3.html">Product 3</a></li>
+                        <li><a href="product4.html">Product 4</a></li>
+                    </ul>
+                </li>
                 <li><a class="active" href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                <li id="lg-bag"><a href="cart.html" aria-label="cart"><i class="fa-solid fa-bag-shopping"></i></a></li>
                 <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
             </ul>
         </div>
 
         <div id="mobile">
             
-            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+            
             <i id="bar" class="fas fa-outdent"></i>
+        </div>
+        <div id="mobile1">
+            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
         </div>
     </section>
 
@@ -115,7 +128,7 @@
 
     <footer class="section-p1">
         <div class="col">
-            <img class="logo" src="img/logo.png" alt="">
+            <img class="logo" src="img/logo.png" alt="logo footer" title="logo footer">
             <h4>Contact</h4>
             <p><strong>Address:</strong> 562 Wellington Road, San Francisco</p>
             <p><strong>Phone:</strong> +01 2222 365 /(+91) 01 2345 6789</p>

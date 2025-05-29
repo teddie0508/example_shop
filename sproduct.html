@@ -1,55 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE-edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Cara Shop" />
     <title>Website Beginner</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
+    
 </head>
 
 <body>
     <section id="header">
-        <a href="index.html"><img src="img/logo.png" class="logo" alt=""></a>
+        <a href="index.html"><img src="img/logo.png" class="logo" alt="logo shop" title="click to go back Home"></a>
 
         <div>
             <ul id="navbar">
                 <li><a href="index.html">Home</a></li>
-                <li><a class="active" href="shop.html">Shop</a></li>
+                <li class="shop-submenu">
+                    <a class="active" href="shop.html">Shop <i class="fa-solid fa-caret-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="shop.html">All Products</a></li>
+                        <li><a href="sproduct.html">Product 1</a></li>
+                        <li><a href="sproduct.html">Product 2</a></li>
+                        <li><a href="product3.html">Product 3</a></li>
+                        <li><a href="product4.html">Product 4</a></li>
+                    </ul>
+                </li>
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                <li id="lg-bag"><a href="cart.html" aria-label="cart"><i class="fa-solid fa-bag-shopping"></i></a></li>
                 <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
             </ul>
         </div>
 
         <div id="mobile">
             
-            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
+            
             <i id="bar" class="fas fa-outdent"></i>
+        </div>
+        <div id="mobile1">
+            <a href="cart.html"><i class="fa-solid fa-bag-shopping"></i></a>
         </div>
     </section>
 
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image">
 
-            <img src="img/products/f1.jpg" width="100%" id="MainImage" alt="">
+            <img src="img/products/f1.jpg" width="100%" id="MainImage" alt="Main Product Image" data-index="0">
 
             <div class="small-img-group">
                 <div class="small-img-col">
-                    <img src="img/products/f1.jpg" width="100%" class="small-img" alt="">
+                    <img src="img/products/f1.jpg" width="100%" class="small-img" alt="product image" data-index="1">
                 </div>
                 <div class="small-img-col">
-                    <img src="img/products/f2.jpg" width="100%" class="small-img" alt="">
+                    <img src="img/products/f2.jpg" width="100%" class="small-img" alt="product image" data-index="2">
                 </div>
                 <div class="small-img-col">
-                    <img src="img/products/f3.jpg" width="100%" class="small-img" alt="">
+                    <img src="img/products/f3.jpg" width="100%" class="small-img" alt="product image" data-index="3">
                 </div>
                 <div class="small-img-col">
-                    <img src="img/products/f4.jpg" width="100%" class="small-img" alt="">
+                    <img src="img/products/f4.jpg" width="100%" class="small-img" alt="product image" data-index="4">
                 </div>
 
             </div>
@@ -72,6 +86,13 @@
             <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum ab id odio ea saepe, eligendi consequatur harum quas minima odit pariatur iure nemo ipsam aperiam earum deserunt ullam architecto repudiandae.</span>
         </div>
     </section>
+
+    <div class="lightbox">
+        <button class="close"><i class="fa-solid fa-xmark"></i></button>
+        <button class="prev">&#8249;</button>
+        <img src="" alt="lightbox image">
+        <button class="next">&#8250;</button>
+    </div>
 
     <section id="product1" class="section-p1">
         <h2>Featured Products</h2>
@@ -157,7 +178,7 @@
 
     <footer class="section-p1">
         <div class="col">
-            <img class="logo" src="img/logo.png" alt="">
+            <img class="logo" src="img/logo.png" alt="logo footer" title="logo footer">
             <h4>Contact</h4>
             <p><strong>Address:</strong> 562 Wellington Road, San Francisco</p>
             <p><strong>Phone:</strong> +01 2222 365 /(+91) 01 2345 6789</p>
@@ -209,24 +230,61 @@
     </footer>
 
     <script>
-        var MainImg = document.getElementById("MainImage");
-        var smallimg = document.getElementsByClassName("small-img");
+        const gallery = document.querySelector('.single-pro-image');
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImage = document.querySelector('.lightbox img');
+        const closeBtn = document.querySelector('.close');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
 
-        smallimg[0].onclick = function () {
-            MainImg.src = smallimg[0].src;
+        let currentIndex = 0;
+        const images = Array.from(gallery.querySelectorAll('img'));
+
+
+        // Function to open the lightbox
+        gallery.addEventListener('click', (e) => {
+            if (e.target.tagName === 'IMG') {
+                currentIndex = parseInt(e.target.dataset.index, 10);
+                updateLightbox();
+                lightbox.style.display = 'flex';
+            }
+        });
+
+        closeBtn.addEventListener('click', (e) => {
+            lightbox.style.display = 'none';
+        });
+
+        prevBtn.addEventListener('click', (e) => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateLightbox();
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateLightbox();
+        });
+
+        function updateLightbox() {
+            const imgSrc = images[currentIndex].src;
+            lightboxImage.src = imgSrc;
+            lightboxImage.alt = images[currentIndex].alt;
+            updateButtons();
         }
-        smallimg[1].onclick = function () {
-            MainImg.src = smallimg[1].src;
-        }
-        smallimg[2].onclick = function () {
-            MainImg.src = smallimg[2].src;
-        }
-        smallimg[3].onclick = function () {
-            MainImg.src = smallimg[3].src;
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+
+        function updateButtons() {
+            prevBtn.disabled = (currentIndex === 0);
+            nextBtn.disabled = (currentIndex === images.length - 1);
         }
     </script>
 
     <script src="script.js"></script>
+</div>
 </body>
 
 </html>
